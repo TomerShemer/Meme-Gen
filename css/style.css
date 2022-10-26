@@ -1,0 +1,57 @@
+@font-face {
+    font-family: poppins;
+    src: url(../fonts/Poppins/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: poppins-semibold;
+    src: url(../fonts/Poppins/Poppins-SemiBold.ttf);
+}
+
+:root {
+    --clr1: #fff;
+    --clr2: #ebeef3;
+    --clr3: #bbc4d1;
+    --clr4: #383b42;
+    --clr5: #22252c;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+/* BASIC */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--clr5);
+    font-family: poppins;
+}
+
+.btn {
+    font-family: poppins;
+}
+
+/* HELPERS */
+
+.main-layout>* {
+    margin: auto;
+}
+
+/* LAYOUT */
+
+
+
+/* COMPONENTS */
+
+.logo {
+    width: 100px;
+}
+
+header {
+    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+    max-width: 95%;
+
+}
