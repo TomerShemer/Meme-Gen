@@ -11,9 +11,13 @@
 :root {
     --clr1: #fff;
     --clr2: #ebeef3;
+    --clr2-trans: rgba(235, 238, 243, 0.11);
     --clr3: #bbc4d1;
     --clr4: #383b42;
     --clr5: #22252c;
+
+    --clr-primary: #33be6d;
+    --clr-secondary: #0c98b9;
 }
 
 
@@ -27,31 +31,139 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--clr5);
+    /* background-image: url('img/bg-img.png'); */
     font-family: poppins;
 }
 
-.btn {
-    font-family: poppins;
+button {
+    /* background-color: inherit; */
 }
 
 /* HELPERS */
 
-.main-layout>* {
-    margin: auto;
+.main-section {
+    margin: 0 90px;
+}
+
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.clean-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* LAYOUT */
 
+/* header */
+.logo {
+    margin-inline-start: 5rem;
+}
+
+header {
+    margin: 10px auto 20px;
+}
+
+header li {
+    margin-inline-end: 25px;
+}
+
+header ul:last-child {
+    margin-inline-end: 50px;
+}
+
+/* main */
+
+/* gallery */
+
+.gallery-container {
+    height: 100%;
+}
+
+/* editor */
+
+.editor-container {
+    gap: 90px;
+}
+
+.editor-container .menu-controller {
+    flex-direction: column;
+}
+
+
+
 
 
 /* COMPONENTS */
+
+/* header */
 
 .logo {
     width: 100px;
 }
 
 header {
-    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
-    max-width: 95%;
+    background-image: linear-gradient(-86deg, var(--clr-primary) 0%, var(--clr-secondary) 100%);
+    max-width: 98%;
+    padding: 23px 5px;
+    border-radius: 37px;
+    max-height: 4.375rem;
+}
 
+header .btn {
+    font-family: poppins;
+    background-color: unset;
+    border: unset;
+    color: var(--clr1);
+    font-size: 1.375rem;
+    border-radius: 37px;
+    padding: 7px 15px;
+}
+
+header .btn:hover {
+    color: #21ac91;
+    background-color: var(--clr2);
+}
+
+header .btn.active {
+    color: #21ac91;
+    background-color: var(--clr1);
+    font-family: poppins-semibold;
+}
+
+/* canvas */
+
+
+.canvas-container {
+    outline: var(--clr2-trans) solid 5px;
+    width: 50%;
+    max-width: 700px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+/* control menu */
+
+.menu-controller {
+    width: 50%;
+    max-width: 700px;
+    background-color: var(--clr2-trans);
+}
+
+.text-controller {
+    background-color: #19a59f;
 }

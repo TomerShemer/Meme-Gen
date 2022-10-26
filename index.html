@@ -7,21 +7,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
-<body>
-    <header>
+<body onload="onInit()">
+    <header class="flex space-between align-center">
         <img class="logo" src="img/LOGO.png" alt="Logo">
-        <ul>
+        <ul class="clean-list flex">
             <li>
-                <button class="btn btn-gallery">Gallery</button>
+                <button class="btn btn-gallery active">Gallery</button>
             </li>
             <li>
-                <button class="btn btn-saved-memes">Saved Memes</button>
+                <button class="btn btn-saved-memes">My Memes</button>
+            </li>
+            <li>
+                <button class="btn btn-about">About</button>
             </li>
         </ul>
     </header>
     <main>
+
+        <section class="main-section gallery-container">
+
+        </section>
+
+        <section class="main-section editor-container flex justify-center">
+            <section class="canvas-container">
+                <canvas class="canvas" height="200" width="200"></canvas>
+            </section>
+
+            <section class="menu-controller flex space-between">
+                <input class="input-text" type="text" placeholder="Write text..." oninput="onChangeText(this.value)">
+                <button>switch line</button>
+                <button>Add line</button>
+                <button>Delete line</button>
+                <section class="text-controller">
+                    <button>A+</button>
+                    <button>A-</button>
+                    <button>left</button>
+                    <button>center</button>
+                    <button>right</button>
+                    <select class="select-font">
+                        <datalist>
+                            <option value="impact">Impact</option>
+                            <option value="arial">Arial</option>
+                            <option value="sans-serif">Sans-serif</option>
+                        </datalist>
+                    </select>
+                    <input type="color" class="input-stroke-color">
+                    <input type="color" value="#ffffff" class="input-fill-color">
+                </section>
+                <div class="stickers">🍕🍔🍟🌭🍿</div>
+                <button>Share</button>
+                <button>Download</button>
+            </section>
+
+        </section>
 
     </main>
 
@@ -29,8 +70,8 @@
 
 
     <script src="js/service/storage.service.js"></script>
-    <script src="js/service/main.service.js"></script>
-    <script src="js/main.controller.js"></script>
+    <script src="js/service/meme.service.js"></script>
+    <script src="js/meme.controller.js"></script>
 </body>
 
 </html>
