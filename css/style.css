@@ -11,7 +11,7 @@
 :root {
     --clr1: #fff;
     --clr2: #ebeef3;
-    --clr2-trans: rgba(235, 238, 243, 0.11);
+    --clr2-trans: #ebeef31c;
     --clr3: #bbc4d1;
     --clr4: #383b42;
     --clr5: #22252c;
@@ -37,6 +37,14 @@ body {
 
 button {
     /* background-color: inherit; */
+}
+
+body.editor-open .gallery-container {
+    display: none;
+}
+
+body.editor-open .editor-container {
+    display: flex;
 }
 
 /* HELPERS */
@@ -67,6 +75,13 @@ button {
     padding: 0;
 }
 
+.btn {
+    font-family: poppins;
+    background-color: unset;
+    border: unset;
+    border-radius: 37px;
+}
+
 /* LAYOUT */
 
 /* header */
@@ -91,7 +106,45 @@ header ul:last-child {
 /* gallery */
 
 .gallery-container {
+    max-height: 600px;
+    padding: 25px;
+    margin-block-end: 15px;
+}
+
+.gallery-container .gallery-nav {
+    /* remove later */
+    /* background-color: green; */
+    margin-block-end: 15px;
+}
+
+.gallery-container input {}
+
+.gallery-container input button {}
+
+.gallery-container .imgs-container {
+    overflow-y: scroll;
+    height: 500px;
+    gap: 30px;
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(50px, 200px)); */
+    grid-template-columns: repeat(5, 1fr);
+    margin-inline-end: 15px;
+    padding: 10px;
+}
+
+.gallery-container .item {
+    height: max-content;
+    border-radius: 10px;
+    overflow: hidden;
+
+
+    aspect-ratio: 1 / 1;
+}
+
+.gallery-container .item img {
+    width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 /* editor */
@@ -125,13 +178,11 @@ header {
 }
 
 header .btn {
-    font-family: poppins;
-    background-color: unset;
-    border: unset;
     color: var(--clr1);
     font-size: 1.375rem;
-    border-radius: 37px;
+    font-family: poppins-semibold;
     padding: 7px 15px;
+
 }
 
 header .btn:hover {
@@ -142,11 +193,46 @@ header .btn:hover {
 header .btn.active {
     color: #21ac91;
     background-color: var(--clr1);
-    font-family: poppins-semibold;
+    box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
 }
 
-/* canvas */
+/* gallery section */
 
+.gallery-container {
+    background-color: var(--clr4);
+    border-radius: 10px;
+}
+
+
+/* galley nav */
+
+.gallery-nav {}
+
+.gallery-nav .btn {
+    background-image: linear-gradient(-86deg, var(--clr-primary) 0%, var(--clr-secondary) 100%);
+    font-size: 1.125rem;
+    padding: 5px 25px;
+    color: var(--clr1);
+}
+
+.gallery-nav .btn:hover {
+    background-image: linear-gradient(-86deg, var(--clr-secondary) 0%, var(--clr-primary) 100%);
+}
+
+/* gallery images container */
+
+.imgs-container {}
+
+.item {
+    box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
+}
+
+
+/* editor and canvas */
+
+.editor-container {
+    display: none;
+}
 
 .canvas-container {
     outline: var(--clr2-trans) solid 5px;

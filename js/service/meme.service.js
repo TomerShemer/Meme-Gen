@@ -6,56 +6,63 @@ let gKeywordSearchCountMap = {
     'cute': 12
 }
 
-let gImgs = [
-    {
-        id: 1,
-        url: 'img/memes/1.jpg',
-        keywords: ['trump'],
-    },
-    {
-        id: 2,
-        url: 'img/memes/2.jpg',
-        keywords: ['dog', 'cute'],
-    },
-    {
-        id: 3,
-        url: 'img/memes/3.jpg',
-        keywords: ['dog', 'sleep'],
-    }
-];
 
 let gMeme = {
-    selectedImgId: 1,
+    selectedImgId: 8,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I sometimes eat Falafel',
-            size: 20,
-            align: 'left',
-            color: 'red'
-        },
-        {
-            txt: 'bla bla',
-            size: 50,
+            txt: 'Meme',
+            size: 25,
             align: 'center',
-            color: 'blue'
+            color: '#ffffff'
         },
-        {
-            txt: 'Hello',
-            size: 50,
-            align: 'right',
-            color: 'green'
-        },
-        // {
-        //     txt: 'World',
-        //     size: 45,
-        //     align: 'right',
-        //     color: 'pink'
-        // },
+
     ]
 }
 
-
 function getMeme() {
     return gMeme
+}
+
+function changeText(txt) {
+    if (!gMeme.lines.length) return
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
+}
+
+function changeLine() {
+    if (!gMeme.lines.length) return
+    gMeme.selectedLineIdx++
+    if (gMeme.selectedLineIdx > gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
+}
+
+function addLine() {
+    gMeme.lines.push({
+        txt: '',
+        size: 30,
+        align: 'center',
+        color: getCurrColor()
+    })
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+}
+
+function deleteCurrLine() {
+    if (!gMeme.lines.length) return
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.selectedLineIdx = gMeme.selectedLineIdx - 1 >= 0 ? --gMeme.selectedLineIdx : gMeme.lines.length - 1
+}
+
+function changeFontSize(diff) {
+    if (!gMeme.lines.length) return
+    gMeme.lines[gMeme.selectedLineIdx].size += diff
+}
+
+function changeAlign(dir) {
+    if (!gMeme.lines.length) return
+    gMeme.lines[gMeme.selectedLineIdx].align = dir
+}
+
+function changeFillColor(color) {
+    if (!gMeme.lines.length) return
+    gMeme.lines[gMeme.selectedLineIdx].color = color
 }

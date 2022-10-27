@@ -15,7 +15,7 @@
         <img class="logo" src="img/LOGO.png" alt="Logo">
         <ul class="clean-list flex">
             <li>
-                <button class="btn btn-gallery active">Gallery</button>
+                <button class="btn btn-gallery active" onclick="onOpenGallery()">Gallery</button>
             </li>
             <li>
                 <button class="btn btn-saved-memes">My Memes</button>
@@ -25,9 +25,22 @@
             </li>
         </ul>
     </header>
+
     <main>
 
         <section class="main-section gallery-container">
+            <nav class="gallery-nav flex">
+                <section>
+                    <input type="text" placeholder="Search..">
+                    <input type="submit">
+                </section>
+                <section class="flex">
+                    <div class="searchwords-container"><span>Search Words</span></div>
+                    <button class="btn">More</button>
+                </section>
+            </nav>
+
+            <div class="imgs-container"></div>
 
         </section>
 
@@ -38,24 +51,26 @@
 
             <section class="menu-controller flex space-between">
                 <input class="input-text" type="text" placeholder="Write text..." oninput="onChangeText(this.value)">
-                <button>switch line</button>
-                <button>Add line</button>
-                <button>Delete line</button>
+                <button onclick="onChangeLine()">switch line</button>
+                <button onclick="onAddLine()">Add line</button>
+                <button onclick="onDeleteCurrLine()">Delete line</button>
                 <section class="text-controller">
-                    <button>A+</button>
-                    <button>A-</button>
-                    <button>left</button>
-                    <button>center</button>
-                    <button>right</button>
-                    <select class="select-font">
+                    <button onclick="onChangeFontSize(1)">A+</button>
+                    <button onclick="onChangeFontSize(-1)">A-</button>
+                    <button onclick="onChangeAlign('right')">left</button>
+                    <button onclick="onChangeAlign('center')">center</button>
+                    <button onclick="onChangeAlign('left')">right</button>
+                    <select class="select-font" oninput="renderMeme()">
                         <datalist>
                             <option value="impact">Impact</option>
                             <option value="arial">Arial</option>
-                            <option value="sans-serif">Sans-serif</option>
+                            <option value="serif">Serif</option>
+                            <option value="cursive">cursive</option>
                         </datalist>
                     </select>
-                    <input type="color" class="input-stroke-color">
-                    <input type="color" value="#ffffff" class="input-fill-color">
+                    <input type="color" class="input-stroke-color" oninput="renderMeme()">
+                    <input type="color" value="#ffffff" class="input-fill-color"
+                        oninput="onChangeFillColor(this.value)">
                 </section>
                 <div class="stickers">🍕🍔🍟🌭🍿</div>
                 <button>Share</button>
@@ -67,10 +82,10 @@
     </main>
 
 
-
-
     <script src="js/service/storage.service.js"></script>
     <script src="js/service/meme.service.js"></script>
+    <script src="js/service/gallery.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
 </body>
 

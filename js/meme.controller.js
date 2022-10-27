@@ -7,8 +7,8 @@ let gCurrFont
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
-function onInit() {
-    console.log('Init');
+
+function initEditor() {
     gElCanvas = document.querySelector('.canvas')
     gCtx = gElCanvas.getContext('2d')
 
@@ -24,6 +24,21 @@ function addListeners() {
         resizeCanvasWidth()
         renderMeme()
     })
+    document.querySelector('.input-text').addEventListener('focusout', function () {
+        const txt = document.querySelector('.input-text').value
+        if (!txt) onDeleteCurrLine()
+    })
+}
+
+function onOpenEditor() {
+    document.querySelector('body').classList.add('editor-open')
+    document.querySelector('.btn-gallery').classList.remove('active')
+    initEditor()
+}
+
+function onDeleteCurrLine() {
+    deleteCurrLine()
+    renderMeme()
 }
 
 function resizeCanvasWidth() {
@@ -45,14 +60,33 @@ function clearCanvas() {
 
 function renderMeme() {
     const meme = getMeme()
-    document.querySelector('.input-text').value = meme.selectedLineIdx
-
+    renderInputByLineIdx()
+    renderColorInput()
     drawImg(meme)
+}
+
+function renderInputByLineIdx() {
+    const meme = getMeme()
+    const elInput = document.querySelector('.input-text')
+    if (meme.lines.length) {
+        const { selectedLineIdx } = meme
+        elInput.value = meme.lines[selectedLineIdx].txt
+    } else {
+        elInput.value = ''
+    }
+}
+
+function renderColorInput() {
+    const meme = getMeme()
+    const elInput = document.querySelector('.input-fill-color')
+
+    elInput.value = meme.lines[meme.selectedLineIdx].color
 }
 
 function drawImg(meme) {
     const img = new Image()
-    img.src = `img/memes/${meme.selectedImgId}.jpg`
+    const url = getImgs()[meme.selectedImgId].url
+    img.src = `${url}`
 
     img.onload = () => {
         // resize canvas and container height
@@ -79,20 +113,20 @@ function drawText(meme) {
 
         gCtx.lineWidth = Math.ceil(size / 5)
 
-        // gCtx.font = `${size}px ${font}`
-        gCtx.font = `100px ${font}`
+        gCtx.font = `${size}px ${font}`
+        // gCtx.font = `100px ${font}`
 
-        // gCtx.textAlign = `${align}`
+        gCtx.textAlign = `${align}`
         // gCtx.textAlign = `center`
 
         gCtx.fillStyle = `${color}`
-        gCtx.strokeColor = strokeColor
+        gCtx.strokeStyle = strokeColor
 
-        let canvasX = gElCanvas.width / 2
+        let canvasX
         let canvasY
 
-        console.log(gCtx.measureText(txt));
-        const textWidth = gCtx.measureText(txt).width
+        // console.log(gCtx.measureText(txt));
+        // const textWidth = gCtx.measureText(txt).width
 
         switch (align) {
             case 'center':
@@ -111,10 +145,10 @@ function drawText(meme) {
 
         switch (idx) {
             case 0:
-                canvasY = size * 2.5
+                canvasY = size
                 break;
             case 1:
-                canvasY = gElCanvas.height - size / 2
+                canvasY = gElCanvas.height - 10
                 break
             default:
                 canvasY = gElCanvas.height / 2
@@ -129,5 +163,43 @@ function drawText(meme) {
 }
 
 function onChangeText(txt) {
-    console.log('txt', txt)
+    // console.log('txt', txt)
+    changeText(txt)
+    renderMeme()
+}
+
+function onChangeLine() {
+    changeLine()
+    renderInputByLineIdx()
+    renderColorInput()
+}
+
+function onAddLine() {
+    addLine()
+    renderInputByLineIdx()
+    document.querySelector('.input-text').focus()
+}
+
+function getCurrColor() {
+    return document.querySelector('.input-fill-color').value
+}
+
+function onChangeFontSize(diff) {
+    const meme = getMeme()
+    const currSize = meme.lines[meme.selectedLineIdx].size
+    if (currSize <= 10 && diff === -1 ||
+        currSize >= 150 && diff === 1) return
+
+    changeFontSize(diff)
+    renderMeme()
+}
+
+function onChangeAlign(dir) {
+    changeAlign(dir)
+    renderMeme()
+}
+
+function onChangeFillColor(color) {
+    changeFillColor(color)
+    renderMeme()
 }
