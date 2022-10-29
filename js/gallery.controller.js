@@ -42,3 +42,8 @@ function onSetImg(idx) {
 function onGenerateRandMeme() {
     generateRandMeme()
 }
+
+function onSearchImg(txt) {
+    updateFilterBy(txt)
+    renderGallery()
+}

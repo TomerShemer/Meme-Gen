@@ -21,7 +21,7 @@
                 <button class="btn btn-saved-memes">My Memes</button>
             </li>
             <li>
-                <button class="btn btn-about">About</button>
+                <!-- <button class="btn btn-about">About</button> -->
             </li>
         </ul>
     </header>
@@ -30,7 +30,7 @@
 
         <section class="main-section gallery-container">
             <nav class="gallery-nav flex">
-                <input class="input-search" type="text" placeholder="Search">
+                <input class="input-search" type="text" placeholder="Search" oninput="onSearchImg(this.value)">
                 <section class="nav-btns flex">
                     <!-- <div class="searchwords-container"><span>Search Words</span></div> -->
                     <!-- <button class="btn">More</button> -->
@@ -50,16 +50,22 @@
             <section class="menu-controller">
                 <input class="input-text" type="text" placeholder="Write text..." oninput="onChangeText(this.value)">
                 <div class="crudl-btns flex">
-                    <button class="btn-square btn-change-line" onclick="onChangeLine()"></button>
-                    <button class="btn-square btn-add-line" onclick="onAddLine()"></button>
-                    <button class="btn-square btn-delete-line" onclick="onDeleteCurrLine()"></button>
+                    <button class="btn-square btn-change-line" onclick="onChangeLine()" title="Switch lines"></button>
+                    <button class="btn-square btn-add-line" onclick="onAddLine()" title="Add new line"></button>
+                    <button class="btn-square btn-delete-line" onclick="onDeleteCurrLine()"
+                        title="delete current line"></button>
                 </div>
                 <section class="text-controller">
-                    <button class="btn-square btn-increase-size" onclick="onChangeFontSize(1)"></button>
-                    <button class="btn-square btn-decrease-size" onclick="onChangeFontSize(-1)"></button>
-                    <button class="btn-square btn-align-left" onclick="onChangeAlign('right')"></button>
-                    <button class="btn-square btn-align-center" onclick="onChangeAlign('center')"></button>
-                    <button class="btn-square btn-align-right" onclick="onChangeAlign('left')"></button>
+                    <button class="btn-square btn-increase-size" onclick="onChangeFontSize(1)"
+                        title="Increase font size"></button>
+                    <button class="btn-square btn-decrease-size" onclick="onChangeFontSize(-1)"
+                        title="Decrease font size"></button>
+                    <button class="btn-square btn-align-left" onclick="onChangeAlign('right')"
+                        title="Align left"></button>
+                    <button class="btn-square btn-align-center" onclick="onChangeAlign('center')"
+                        title="Align center"></button>
+                    <button class="btn-square btn-align-right" onclick="onChangeAlign('left')"
+                        title="Align right"></button>
                     <select class="select-font" oninput="renderMeme()">
                         <datalist>
                             <option value="impact">Impact</option>
@@ -68,14 +74,15 @@
                             <option value="cursive">cursive</option>
                         </datalist>
                     </select>
-                    <input type="color" class="input-stroke-color btn-square" oninput="renderMeme()">
+                    <input type="color" class="input-stroke-color btn-square" oninput="renderMeme()"
+                        title="Select stroke color">
                     <input type="color" value="#ffffff" class="input-fill-color btn-square"
-                        oninput="onChangeFillColor(this.value)">
+                        oninput="onChangeFillColor(this.value)" title="Select fill color">
                 </section>
                 <div class="stickers">🍕🍔🍟🌭🍿</div>
                 <div class="export-btns flex">
                     <button class="btn-square btn-share">Share</button>
-                    <button class="btn-square btn-download">Download</button>
+                    <a class="btn-square btn-download" onclick="onDownloadCanvas(this)">Download</a>
                 </div>
             </section>
 

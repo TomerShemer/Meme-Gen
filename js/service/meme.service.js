@@ -6,14 +6,14 @@ let gKeywordSearchCountMap = {
     'cute': 12
 }
 
-const randLines = ['Going for a walk', 'Be cool', 'Sitting at home', 'Perfect', 'Trying to sleep', 'Having some trouble']
+const randLines = ['Going for a walk', 'Be cool', 'Sitting at home', 'Perfect', 'Trying to sleep', 'Having some trouble', 'Very helpful']
 
 let gMeme = {
     selectedImgId: 8,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'Text goes here',
+            txt: '',
             size: 25,
             align: 'center',
             color: '#ffffff'
