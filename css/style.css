@@ -33,6 +33,7 @@ body {
     background-color: var(--clr5);
     /* background-image: url('img/bg-img.png'); */
     font-family: poppins;
+    width: 100%;
 }
 
 button {
@@ -50,7 +51,7 @@ body.editor-open .editor-container {
 /* HELPERS */
 
 .main-section {
-    margin: 0 90px;
+    margin: 0 10px;
 }
 
 .flex {
@@ -78,8 +79,16 @@ body.editor-open .editor-container {
 .btn {
     font-family: poppins;
     background-color: unset;
-    border: unset;
+    border: none;
     border-radius: 37px;
+    cursor: pointer;
+}
+
+.btn-square {
+    font-family: poppins;
+    height: 50px;
+    border: none;
+    cursor: pointer;
 }
 
 /* LAYOUT */
@@ -127,7 +136,7 @@ header ul:last-child {
     gap: 30px;
     display: grid;
     /* grid-template-columns: repeat(auto-fill, minmax(50px, 200px)); */
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(50px, 1fr));
     margin-inline-end: 15px;
     padding: 10px;
 }
@@ -154,10 +163,37 @@ header ul:last-child {
 }
 
 .editor-container .menu-controller {
-    flex-direction: column;
+    padding: 25px;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    gap: 25px;
+    position: relative;
 }
 
+.editor-container .export-btns {
+    gap: 15px;
+}
 
+/* text-controller */
+
+.text-controller {
+    max-width: 100%;
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); */
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 50px 50px;
+    gap: 30px;
+
+}
+
+.text-controller .btn-square {
+    width: 55px;
+}
+
+.text-controller .select-font {
+    grid-column: 1 / span 3;
+}
 
 
 
@@ -182,6 +218,7 @@ header .btn {
     font-size: 1.375rem;
     font-family: poppins-semibold;
     padding: 7px 15px;
+    cursor: pointer;
 
 }
 
@@ -216,8 +253,39 @@ header .btn.active {
 }
 
 .gallery-nav .btn:hover {
+    transition: background-color 1s;
     background-image: linear-gradient(-86deg, var(--clr-secondary) 0%, var(--clr-primary) 100%);
 }
+
+.gallery-nav>* {
+    /* max-width: 500px; */
+}
+
+.gallery-nav input {
+    color: rgba(254, 254, 254, 0.397);
+    font-family: poppins;
+    font-size: 1.25rem;
+    background-color: var(--clr5);
+    border: none;
+    border-radius: 30px;
+    padding-inline-start: 50px;
+    height: 60px;
+    width: 50%;
+}
+
+.gallery-nav .nav-btns {
+    width: 50%;
+    justify-content: flex-end;
+}
+
+.gallery-nav input::after {
+
+    content: url(../img/svg/search.svg);
+}
+
+/* .gallery-nav .searchwords-container {
+    width: 70%;
+} */
 
 /* gallery images container */
 
@@ -225,6 +293,7 @@ header .btn.active {
 
 .item {
     box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 }
 
 
@@ -250,6 +319,172 @@ header .btn.active {
     background-color: var(--clr2-trans);
 }
 
+.menu-controller .input-text {
+    text-align: center;
+    font-family: poppins;
+    font-size: 1.5625rem;
+    border-radius: 28px;
+    background-color: var(--clr2);
+    border: none;
+    color: #3d3d3d;
+    box-shadow: 1px 5px 0 var(--clr3), inset 0 5px 0 var(--clr1);
+}
+
+.menu-controller .crudl-btns {
+    gap: 22px;
+    justify-content: center;
+    align-items: center;
+}
+
 .text-controller {
     background-color: #19a59f;
+}
+
+.text-controller .select-font {
+    border-radius: 10px;
+    background-color: var(--clr1);
+    font-family: poppins-semibold;
+    font-size: 1.625rem;
+    text-transform: uppercase;
+    padding: 0 35px;
+}
+
+.menu-controller {
+    border-radius: 30px;
+}
+
+.menu-controller .btn-square {
+    border-radius: 10px;
+    box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55);
+}
+
+.menu-controller .text-controller {
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+
+.menu-controller .btn-change-line {
+    background-image: linear-gradient(-38deg, #66c4dc 0%, #40b1ce 50%, #0c98bb 100%);
+    box-shadow: 1px 5px 0 #048b97, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    height: 50px;
+    width: 58px;
+}
+
+.menu-controller .btn-add-line {
+    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
+    box-shadow: 1px 5px 0 #015d33, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    height: 50px;
+    width: 58px;
+}
+
+.menu-controller .btn-delete-line {
+    background-image: linear-gradient(-38deg, #cf1d37 0%, #cf1d37 1%, #f05036 100%);
+    box-shadow: 1px 5px 0 #8c0606, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    height: 50px;
+    width: 58px;
+}
+
+.menu-controller .btn-share {
+    background-color: #1e7cd3;
+    box-shadow: 1px 6px 0 #165c9c, inset 0 5px 0 rgba(255, 255, 255, 0.316);
+    width: 50%;
+}
+
+.menu-controller .btn-download {
+    background-color: #8f44bb;
+    box-shadow: 1px 5px 0 #632687, inset 0 5px 0 rgba(255, 255, 255, 0.316);
+    width: 50%;
+}
+
+.menu-controller .btn-increase-size::before {
+    content: url(../img/svg/font-increase.svg);
+}
+
+.menu-controller .btn-decrease-size::before {
+    content: url(../img/svg/font-decrease.svg);
+}
+
+.menu-controller .btn-align-left::before {
+    content: url(../img/svg/align-text-left.svg);
+}
+
+.menu-controller .btn-align-center::before {
+    content: url(../img/svg/align-text-center.svg);
+}
+
+.menu-controller .btn-align-right::before {
+    content: url(../img/svg/align-text-right.svg);
+}
+
+.menu-controller .btn-change-line::before {
+    content: url(../img/svg/arrows.svg);
+}
+
+.menu-controller .btn-add-line::before {
+    content: url(../img/svg/+.png);
+}
+
+.menu-controller .btn-delete-line::before {
+    content: url(../img/svg/delete.svg);
+}
+
+/* css rules */
+
+
+@media (max-width: 1000px) {
+    .editor-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .canvas-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    header {
+        border-radius: 0;
+        margin: 0;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .logo {
+        margin-inline-start: 0.625rem;
+    }
+
+    header ul {
+        align-items: center;
+    }
+
+    header ul:last-child {
+        margin-inline-end: 0;
+    }
+
+    .gallery-nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .gallery-nav input {
+        width: 100%;
+    }
+
+    .gallery-nav>* {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .gallery-container .imgs-container {
+        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .editor-container {
+        margin: 0 10px;
+    }
+
 }

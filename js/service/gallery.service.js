@@ -37,3 +37,17 @@ function setImg(idx) {
     const meme = getMeme()
     meme.selectedImgId = idx
 }
+
+function generateRandMeme() {
+    const meme = getMeme()
+    meme.lines = []
+    const randId = getRandomIntInclusive(0, gImgs.length - 1)
+    const numOfLines = Math.random() > 0.5 ? 1 : 2
+    for (let i = 0; i < numOfLines; i++) {
+        createRandLine()
+    }
+    meme.selectedLineIdx = numOfLines - 1
+
+
+    onSetImg(randId)
+}

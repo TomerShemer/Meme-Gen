@@ -30,13 +30,11 @@
 
         <section class="main-section gallery-container">
             <nav class="gallery-nav flex">
-                <section>
-                    <input type="text" placeholder="Search..">
-                    <input type="submit">
-                </section>
-                <section class="flex">
-                    <div class="searchwords-container"><span>Search Words</span></div>
-                    <button class="btn">More</button>
+                <input class="input-search" type="text" placeholder="Search">
+                <section class="nav-btns flex">
+                    <!-- <div class="searchwords-container"><span>Search Words</span></div> -->
+                    <!-- <button class="btn">More</button> -->
+                    <button class="btn" onclick="onGenerateRandMeme()">I'm Flexible</button>
                 </section>
             </nav>
 
@@ -44,22 +42,24 @@
 
         </section>
 
-        <section class="main-section editor-container flex justify-center">
+        <section class="main-section editor-container flex justify-center align-center">
             <section class="canvas-container">
                 <canvas class="canvas" height="200" width="200"></canvas>
             </section>
 
-            <section class="menu-controller flex space-between">
+            <section class="menu-controller">
                 <input class="input-text" type="text" placeholder="Write text..." oninput="onChangeText(this.value)">
-                <button onclick="onChangeLine()">switch line</button>
-                <button onclick="onAddLine()">Add line</button>
-                <button onclick="onDeleteCurrLine()">Delete line</button>
+                <div class="crudl-btns flex">
+                    <button class="btn-square btn-change-line" onclick="onChangeLine()"></button>
+                    <button class="btn-square btn-add-line" onclick="onAddLine()"></button>
+                    <button class="btn-square btn-delete-line" onclick="onDeleteCurrLine()"></button>
+                </div>
                 <section class="text-controller">
-                    <button onclick="onChangeFontSize(1)">A+</button>
-                    <button onclick="onChangeFontSize(-1)">A-</button>
-                    <button onclick="onChangeAlign('right')">left</button>
-                    <button onclick="onChangeAlign('center')">center</button>
-                    <button onclick="onChangeAlign('left')">right</button>
+                    <button class="btn-square btn-increase-size" onclick="onChangeFontSize(1)"></button>
+                    <button class="btn-square btn-decrease-size" onclick="onChangeFontSize(-1)"></button>
+                    <button class="btn-square btn-align-left" onclick="onChangeAlign('right')"></button>
+                    <button class="btn-square btn-align-center" onclick="onChangeAlign('center')"></button>
+                    <button class="btn-square btn-align-right" onclick="onChangeAlign('left')"></button>
                     <select class="select-font" oninput="renderMeme()">
                         <datalist>
                             <option value="impact">Impact</option>
@@ -68,20 +68,22 @@
                             <option value="cursive">cursive</option>
                         </datalist>
                     </select>
-                    <input type="color" class="input-stroke-color" oninput="renderMeme()">
-                    <input type="color" value="#ffffff" class="input-fill-color"
+                    <input type="color" class="input-stroke-color btn-square" oninput="renderMeme()">
+                    <input type="color" value="#ffffff" class="input-fill-color btn-square"
                         oninput="onChangeFillColor(this.value)">
                 </section>
                 <div class="stickers">🍕🍔🍟🌭🍿</div>
-                <button>Share</button>
-                <button>Download</button>
+                <div class="export-btns flex">
+                    <button class="btn-square btn-share">Share</button>
+                    <button class="btn-square btn-download">Download</button>
+                </div>
             </section>
 
         </section>
 
     </main>
 
-
+    <script src="js/util/util.js"></script>
     <script src="js/service/storage.service.js"></script>
     <script src="js/service/meme.service.js"></script>
     <script src="js/service/gallery.service.js"></script>

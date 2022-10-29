@@ -6,7 +6,7 @@ let gIsDrag
 let gCurrFont
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
-
+const randMemeLines = ['lorem']
 
 function initEditor() {
     gElCanvas = document.querySelector('.canvas')
@@ -74,12 +74,13 @@ function renderInputByLineIdx() {
     } else {
         elInput.value = ''
     }
+    elInput.focus()
 }
 
 function renderColorInput() {
     const meme = getMeme()
+    if (!meme.lines.length) return
     const elInput = document.querySelector('.input-fill-color')
-
     elInput.value = meme.lines[meme.selectedLineIdx].color
 }
 

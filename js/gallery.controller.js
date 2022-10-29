@@ -38,3 +38,7 @@ function onSetImg(idx) {
     initEditor()
     onOpenEditor()
 }
+
+function onGenerateRandMeme() {
+    generateRandMeme()
+}
