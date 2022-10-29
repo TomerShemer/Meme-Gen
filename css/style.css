@@ -36,10 +36,6 @@ body {
     width: 100%;
 }
 
-button {
-    /* background-color: inherit; */
-}
-
 body.editor-open .gallery-container {
     display: none;
 }
@@ -123,9 +119,6 @@ header ul:last-child {
 .gallery-container .gallery-nav {
     margin-block-end: 15px;
 }
-
-.gallery-container input {}
-
 
 .gallery-container .imgs-container {
     overflow-y: scroll;
@@ -240,8 +233,6 @@ header .btn.active {
 
 /* galley nav */
 
-.gallery-nav {}
-
 .gallery-nav .btn {
     background-image: linear-gradient(-86deg, var(--clr-primary) 0%, var(--clr-secondary) 100%);
     font-size: 1.125rem;
@@ -252,10 +243,6 @@ header .btn.active {
 .gallery-nav .btn:hover {
     transition: background-color 1s;
     background-image: linear-gradient(-86deg, var(--clr-secondary) 0%, var(--clr-primary) 100%);
-}
-
-.gallery-nav>* {
-    /* max-width: 500px; */
 }
 
 .gallery-nav input {
@@ -285,8 +272,6 @@ header .btn.active {
 } */
 
 /* gallery images container */
-
-.imgs-container {}
 
 .item {
     box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
@@ -535,7 +520,7 @@ header .btn.active {
         gap: 10px;
         grid-template-columns: repeat(2, 1fr);
         height: 400px;
-        overflow: scroll;
+        overflow-y: scroll;
     }
 
     .editor-container {
