@@ -4,6 +4,7 @@
 function onInit() {
     console.log('Init');
     initGallery()
+    renderDataList()
 }
 
 function initGallery() {
@@ -26,6 +27,7 @@ function renderGallery() {
 }
 
 function onOpenGallery() {
+    resetMeme()
     const elBody = document.querySelector('body')
     if (!elBody.classList.contains('editor-open')) return
 
@@ -46,4 +48,16 @@ function onGenerateRandMeme() {
 function onSearchImg(txt) {
     updateFilterBy(txt)
     renderGallery()
+}
+
+function renderDataList() {
+    let strHtmls = ''
+    const keywords = getKeywords()
+    const elDatalist = document.querySelector('#keywords')
+
+    keywords.forEach(keyword => {
+        strHtmls += `<option onclick="onSearchImg('${keyword}')" value="${keyword}">${keyword}</option>
+    `})
+
+    elDatalist.innerHTML = strHtmls
 }

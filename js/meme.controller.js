@@ -37,6 +37,8 @@ function onOpenEditor() {
 }
 
 function onDeleteCurrLine() {
+    const meme = getMeme()
+    if (meme.lines.length === 1) return
     deleteCurrLine()
     renderMeme()
 }
@@ -44,13 +46,13 @@ function onDeleteCurrLine() {
 function resizeCanvasWidth() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
-    clearCanvas()
+    // clearCanvas()
 }
 
 function resizeCanvasHeight(height) {
     gElCanvas.height = height
     document.querySelector('.canvas-container').style.height = `${height}px`
-    clearCanvas()
+    // clearCanvas()
 }
 
 function clearCanvas() {
@@ -68,11 +70,11 @@ function renderMeme() {
 function renderInputByLineIdx() {
     const meme = getMeme()
     const elInput = document.querySelector('.input-text')
-    if (meme.lines.length) {
-        const { selectedLineIdx } = meme
-        elInput.value = meme.lines[selectedLineIdx].txt
-    } else {
+    const { selectedLineIdx } = meme
+    if (meme.lines[selectedLineIdx].txt === 'Text goes here') {
         elInput.value = ''
+    } else {
+        elInput.value = meme.lines[selectedLineIdx].txt
     }
     elInput.focus()
 }
@@ -98,13 +100,11 @@ function drawImg(meme) {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) //img,x,y,xEnd,yEnd
         drawText(meme)
 
+        drawTextOutline()
     }
 }
 
 function drawText(meme) {
-    if (!meme.lines.length) return
-
-    // TODO: add loop
     meme.lines.forEach((line, idx) => {
 
         // fill text
@@ -159,7 +159,23 @@ function drawText(meme) {
 
         gCtx.strokeText(`${txt}`, canvasX, canvasY, gElCanvas.width - 20)
         gCtx.fillText(`${txt}`, canvasX, canvasY, gElCanvas.width - 20)
+
+        // if (meme.selectedLineIdx === idx) {
+        //     const textMeasure = gCtx.measureText(txt)
+        //     const textWidth = gCtx.measureText(txt).width
+        //     const textHeight = gCtx.measureText(txt).fontBoundingBoxAscent + 10
+        //     gCtx.lineWidth = 3
+        //     gCtx.strokeStyle = 'lightgray'
+        //     console.log('textMeasure', textMeasure)
+        //     gCtx.beginPath()
+        //     gCtx.rect(canvasX, canvasY, textWidth + 40, textHeight)
+        //     gCtx.stroke()
+        // }
     })
+
+}
+
+function drawTextOutline() {
 
 }
 
@@ -179,6 +195,7 @@ function onAddLine() {
     addLine()
     renderInputByLineIdx()
     document.querySelector('.input-text').focus()
+    renderMeme()
 }
 
 function getCurrColor() {

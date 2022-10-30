@@ -1,6 +1,12 @@
 'use strict'
 
+const KEYWORDS = ['Field', 'Dog', 'Angry', 'Trump', 'Cute', 'Baby',
+    'Success', 'Sleep', 'Cat', 'Willi Wonka', 'Laugh', 'You', 'History Channel',
+    'Aliens', 'Dr Evil', 'Dancing', 'Obama', 'Kiss', 'Toast', 'Matrix',
+    'Sean Bean', 'Mordor', 'Oprah', 'Pickard', 'Putin', 'Everywhere']
+
 let gFilterBy = { txt: '' }
+
 
 let gImgs = [
     { id: 1, url: 'img/memes/2.jpg', keywords: ['field'], },
@@ -9,7 +15,7 @@ let gImgs = [
     { id: 4, url: 'img/memes/5.jpg', keywords: ['baby', 'success'], },
     { id: 5, url: 'img/memes/005.jpg', keywords: ['dog', 'sleep', 'baby'], },
     { id: 6, url: 'img/memes/006.jpg', keywords: ['cat', 'sleep'], },
-    { id: 7, url: 'img/memes/8.jpg', keywords: ['Willi Wonka'], },
+    { id: 7, url: 'img/memes/8.jpg', keywords: ['willi wonka'], },
     { id: 8, url: 'img/memes/9.jpg', keywords: ['baby', 'laugh'], },
     { id: 9, url: 'img/memes/12.jpg', keywords: ['you'] },
     { id: 10, url: 'img/memes/19.jpg', keywords: ['angry'], },
@@ -28,8 +34,8 @@ let gImgs = [
     { id: 23, url: 'img/memes/patrick.jpg', keywords: ['pickard'], },
     { id: 24, url: 'img/memes/putin.jpg', keywords: ['putin'], },
     { id: 25, url: 'img/memes/X-Everywhere.jpg', keywords: ['everywhere', 'toystory'], },
-
 ]
+
 
 function getImgs() {
     if (!gFilterBy.txt) return gImgs
@@ -38,7 +44,7 @@ function getImgs() {
     let imgs = gImgs.filter(img => {
         let isFound = false
         img.keywords.forEach(word => {
-            if (word.includes(gFilterBy.txt)) isFound = true
+            if (word.includes(gFilterBy.txt.toLowerCase())) isFound = true
         })
         return isFound
     })
@@ -66,4 +72,8 @@ function generateRandMeme() {
 
 function updateFilterBy(txt) {
     gFilterBy.txt = txt
+}
+
+function getKeywords() {
+    return KEYWORDS
 }

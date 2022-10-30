@@ -9,16 +9,15 @@ let gKeywordSearchCountMap = {
 const randLines = ['Going for a walk', 'Be cool', 'Sitting at home', 'Perfect', 'Trying to sleep', 'Having some trouble', 'Very helpful']
 
 let gMeme = {
-    selectedImgId: 8,
+    selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: '',
-            size: 25,
+            txt: 'Text goes here',
+            size: 50,
             align: 'center',
             color: '#ffffff'
         },
-
     ]
 }
 
@@ -27,20 +26,18 @@ function getMeme() {
 }
 
 function changeText(txt) {
-    if (!gMeme.lines.length) addLine()
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
 function changeLine() {
-    if (!gMeme.lines.length) return
     gMeme.selectedLineIdx++
     if (gMeme.selectedLineIdx > gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
 }
 
 function addLine() {
     gMeme.lines.push({
-        txt: '',
-        size: 30,
+        txt: 'Text goes here',
+        size: 50,
         align: 'center',
         color: getCurrColor()
     })
@@ -48,10 +45,8 @@ function addLine() {
 }
 
 function deleteCurrLine() {
-    if (!gMeme.lines.length) return
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     gMeme.selectedLineIdx = gMeme.selectedLineIdx - 1 >= 0 ? --gMeme.selectedLineIdx : gMeme.lines.length - 1
-    if (gMeme.selectedLineIdx < 0) gMeme.selectedLineIdx = 0
 }
 
 function changeFontSize(diff) {
@@ -76,4 +71,19 @@ function createRandLine() {
         align: 'center',
         color: getRandomColor()
     })
+}
+
+function resetMeme() {
+    gMeme = {
+        selectedImgId: 0,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: 'Text goes here',
+                size: 30,
+                align: 'center',
+                color: '#ffffff'
+            },
+        ]
+    }
 }

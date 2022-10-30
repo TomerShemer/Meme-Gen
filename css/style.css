@@ -34,6 +34,7 @@ body {
     /* background-image: url('img/bg-img.png'); */
     font-family: poppins;
     width: 100%;
+    overflow-x: hidden;
 }
 
 body.editor-open .gallery-container {
@@ -46,8 +47,9 @@ body.editor-open .editor-container {
 
 /* HELPERS */
 
-.main-section {
-    margin: 0 10px;
+.main-section>*:not(.full) {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .flex {
@@ -95,7 +97,7 @@ body.editor-open .editor-container {
 }
 
 header {
-    margin: 10px auto 20px;
+    margin: 20px auto;
 }
 
 header li {
@@ -118,6 +120,7 @@ header ul:last-child {
 
 .gallery-container .gallery-nav {
     margin-block-end: 15px;
+    margin-block-end: 10px;
 }
 
 .gallery-container .imgs-container {
@@ -126,7 +129,7 @@ header ul:last-child {
     gap: 30px;
     display: grid;
     /* grid-template-columns: repeat(auto-fill, minmax(50px, 200px)); */
-    grid-template-columns: repeat(5, minmax(50px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     margin-inline-end: 15px;
     padding: 10px;
 }
@@ -149,14 +152,14 @@ header ul:last-child {
 /* editor */
 
 .editor-container {
-    gap: 90px;
+    gap: 15px;
 }
 
 .editor-container .menu-controller {
     padding: 25px;
-    width: 100%;
+    width: fit-content;
     display: grid;
-    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr 1fr;
     gap: 25px;
     position: relative;
 }
@@ -168,7 +171,7 @@ header ul:last-child {
 /* text-controller */
 
 .text-controller {
-    max-width: 100%;
+    width: fit-content;
     display: grid;
     /* grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); */
     grid-template-columns: repeat(5, 1fr);
@@ -267,9 +270,9 @@ header .btn.active {
     content: url(../img/svg/search.svg);
 }
 
-/* .gallery-nav .searchwords-container {
-    width: 70%;
-} */
+.gallery-nav #keywords {
+    text-transform: capitalize;
+}
 
 /* gallery images container */
 
@@ -337,6 +340,11 @@ header .btn.active {
     /* padding: 10px; */
 }
 
+
+.menu-controller .crudl-btns .btn-square {
+    align-items: flex-end;
+}
+
 .text-controller {
     background-color: #19a59f;
 }
@@ -348,6 +356,11 @@ header .btn.active {
     font-size: 1.625rem;
     text-transform: uppercase;
     padding: 0 35px;
+}
+
+.text-controller .label-stroke-color,
+.text-controller .label-fill-color {
+    background-color: var(--clr1);
 }
 
 .menu-controller {
@@ -368,6 +381,15 @@ header .btn.active {
 .menu-controller .text-controller {
     border-radius: 10px;
     padding: 10px 15px;
+    position: relative;
+}
+
+.menu-controller .input-stroke-color,
+.menu-controller .input-fill-color {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 
@@ -445,6 +467,14 @@ header .btn.active {
     content: url(../img/svg/delete.svg);
 }
 
+.menu-controller .label-fill-color::before {
+    content: url(../img/svg/pallette.svg);
+}
+
+.menu-controller .label-stroke-color::before {
+    content: url(../img/svg/s.png);
+}
+
 /* .menu-controller .input-fill-color::before {
     content: url(../img/svg/pallette.svg);
 } */
@@ -456,15 +486,26 @@ header .btn.active {
 @media (max-width: 1000px) {
     .editor-container {
         flex-direction: column;
+        margin-left: 0;
         width: 100%;
     }
 
-    .canvas-container {
-        width: 100%;
+    .editor-container .canvas-container {
+        width: 90%;
+        margin: auto;
+    }
+
+    .gallery-container .imgs-container {
+        gap: 15px;
+    }
+
+    .main-section>*:not(.full) {
+        margin: 10px 0;
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 520px) {
+
     body {
         overflow-x: hidden;
     }
@@ -473,7 +514,8 @@ header .btn.active {
         border-radius: 0;
         margin: 0;
         margin-bottom: 20px;
-        width: 100vw;
+        width: 100%;
+        box-sizing: content-box;
     }
 
     .logo {
@@ -529,15 +571,14 @@ header .btn.active {
     }
 
     .editor-container .menu-controller {
-        border-radius: 0;
-        padding: 5px;
-        width: 100%;
+        padding: 10px;
+        /* width: 100%; */
+        margin-block-end: 10px;
     }
 
-    .canvas-container {
+    /* .canvas-container {
         border-radius: 0;
-    }
-
+    } */
 
     .editor-container .text-controller {
         padding: 5px;
